@@ -10,18 +10,15 @@ body {
     box-sizing: border-box;
 }
 
-/* Fullscreen Game Container */
 #game-container {
     position: relative;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
 }
 
-/* Header Text */
 #header-text {
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 14px;
@@ -34,7 +31,6 @@ body {
     border-radius: 10px;
 }
 
-/* Clock Label */
 #clock-label {
     position: absolute;
     top: 2%;
@@ -46,7 +42,6 @@ body {
     z-index: 1;
 }
 
-/* Background Image */
 #background {
     position: absolute;
     top: 0;
@@ -57,7 +52,6 @@ body {
     z-index: -1;
 }
 
-/* Countdown Timer */
 #clock {
     position: absolute;
     top: 8%;
@@ -88,12 +82,13 @@ body {
     display: block;
 }
 
-/* Chat Input */
+/* Chat input */
 #chat-container {
     position: absolute;
-    top: calc(40% - 51px);
+    top: 40%;
     left: 2%;
-    width: 501px;
+    width: 100%;
+    max-width: 500px;
     z-index: 1;
 }
 
@@ -112,7 +107,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Chat Placeholder */
 #user-input::placeholder {
     font-family: 'Roobert', sans-serif;
     font-size: 12px;
@@ -120,12 +114,13 @@ body {
     text-align: center;
 }
 
-/* Chat History */
+/* Chat history */
 #chat-history {
     position: absolute;
-    top: calc(45% - 51px);
+    top: 45%;
     left: 2%;
-    width: 511px;
+    width: 100%;
+    max-width: 500px;
     max-height: 290px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -168,7 +163,7 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Donation Section */
+/* Donation */
 .donation-container {
     position: fixed;
     bottom: 20px;
@@ -176,7 +171,7 @@ body {
     transform: translateX(-50%);
     display: flex;
     justify-content: space-between;
-    width: 95%;
+    width: 90%;
     max-width: 1200px;
     gap: 15px;
 }
@@ -185,12 +180,14 @@ body {
     text-align: center;
     flex: 1 1 120px;
     max-width: 120px;
+    height: 90%;
 }
 
 .donation-text {
     font-size: 14px;
     margin-bottom: 5px;
     color: white;
+    font-weight: normal;
 }
 
 .donation-button {
@@ -209,7 +206,7 @@ body {
     background-color: #ffaa00;
 }
 
-/* Video Container */
+/* Video container */
 #video-container {
     position: absolute;
     bottom: 15%;
@@ -231,19 +228,98 @@ body {
     border-radius: 6px;
 }
 
-/* Media Queries for Mobile and Tablet Responsiveness */
-@media (max-width: 768px) {
-    /* Adjust header text for smaller screens */
-    #header-text {
-        font-size: 12px;
-        left: 50%;
-        transform: translateX(-50%);
+/* Mobile and small screen responsiveness */
+@media screen and (max-width: 768px) {
+    /* Ensure background is centered on mobile */
+    #background {
+        object-fit: contain;
+        object-position: center;
     }
 
-    /* Adjust clock display */
+    #header-text {
+        font-size: 12px;
+    }
+
+    #clock-label {
+        font-size: 24px;
+    }
+
     #clock {
-        font-size: 18px;
+        position: absolute;
+        top: 8%;
+        left: 2%;
+        font-size: 20px;
+        display: flex;
+        flex-direction: column; /* Clock stacked vertically */
+        justify-content: space-between;
         gap: 15px;
+        padding: 0 10px;
+    }
+
+    .time-number {
+        font-size: 50px;
+    }
+
+    .time-text {
+        font-size: 16px;
+    }
+
+    #chat-container {
+        top: 40%;
+        width: 90%;
+        left: 5%;
+        max-width: none;
+    }
+
+    #user-input {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    #chat-history {
+        top: 45%;
+        width: 90%;
+        left: 5%;
+        max-width: none;
+    }
+
+    /* Donation boxes in 2 rows: 3 on the first row, 4 on the second */
+    .donation-container {
+        width: 95%;
+        flex-direction: column; /* Stack donation boxes vertically */
+        align-items: center;
+    }
+
+    .donation-box {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Style for 3 items in the first row */
+    .donation-container > .donation-box:nth-child(-n+3) {
+        width: 32%;
+    }
+
+    /* Style for 4 items in the second row */
+    .donation-container > .donation-box:nth-child(n+4) {
+        width: 23%;
+    }
+
+    #video-container {
+        width: 100%;
+        bottom: 10%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #clock-label {
+        font-size: 18px;
+    }
+
+    #clock {
+        top: 4%;
+        left: 5%;
+        font-size: 16px;
     }
 
     .time-number {
@@ -254,61 +330,24 @@ body {
         font-size: 14px;
     }
 
-    /* Adjust chat container */
     #chat-container {
-        width: 90%;
+        top: 35%;
     }
 
     #user-input {
-        height: 30px;
-        font-size: 16px;
-    }
-
-    /* Adjust chat history */
-    #chat-history {
-        width: 90%;
-    }
-
-    /* Donation box layout */
-    .donation-container {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .donation-box {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
-
-    /* Adjust video container */
-    #video-container {
-        width: 100%;
-        height: 200px;
-    }
-}
-
-@media (max-width: 480px) {
-    #clock {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .time-block {
-        margin-bottom: 10px;
-    }
-
-    #header-text {
         font-size: 10px;
     }
 
-    /* Adjust donation buttons */
-    .donation-button {
-        padding: 6px 18px;
-        font-size: 14px;
+    #chat-history {
+        top: 40%;
     }
 
-    /* Adjust chat history font */
-    #chat-history {
-        font-size: 10px;
+    /* Update the donation box sizes for very small screens */
+    .donation-container > .donation-box:nth-child(-n+3) {
+        width: 30%;
+    }
+
+    .donation-container > .donation-box:nth-child(n+4) {
+        width: 22%;
     }
 }
