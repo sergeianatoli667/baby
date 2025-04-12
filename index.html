@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Doomsday Alarm Clock</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+    <div id="game-container">
+        <div id="header-text">HAIL MAGA BABY</div>
+        <img id="background" src="background.jpg" alt="Doomsday Background"/>
+
+        <div id="clock-label">MAGA BABY IS KING FOR...</div>
+
+        <div id="clock">
+            <div class="time-block"><span class="time-number" id="years">7</span><span class="time-text">Years</span></div>
+            <div class="time-block"><span class="time-number" id="days">300</span><span class="time-text">Days</span></div>
+            <div class="time-block"><span class="time-number" id="hours">5</span><span class="time-text">Hours</span></div>
+            <div class="time-block"><span class="time-number" id="minutes">40</span><span class="time-text">Minutes</span></div>
+            <div class="time-block"><span class="time-number" id="seconds">00</span><span class="time-text">Seconds</span></div>
+        </div>
+
+        <div id="chat-container">
+            <input type="text" id="user-input" placeholder="Tell the king, remove 30s from his power." maxlength="250" />
+        </div>
+
+        <div id="chat-history"></div>
+    </div>
+
+    <div class="donation-container">
+        <div class="donation-box"><p class="donation-text">Remove 1 hour</p><button class="donation-button" onclick="donate(1 * 60 * 60)">$1.99</button></div>
+        <div class="donation-box"><p class="donation-text">Remove 6 hours</p><button class="donation-button" onclick="donate(6 * 60 * 60)">$9.99</button></div>
+        <div class="donation-box"><p class="donation-text">Remove 1 day</p><button class="donation-button" onclick="donate(24 * 60 * 60)">$29.99</button></div>
+        <div class="donation-box"><p class="donation-text">Add 1 hour</p><button class="donation-button" onclick="donate(-1 * 60 * 60)">$1.99</button></div>
+        <div class="donation-box"><p class="donation-text">Add 1 day</p><button class="donation-button" onclick="donate(-24 * 60 * 60)">$69.69</button></div>
+        <div class="donation-box"><p class="donation-text">Add 7 days</p><button class="donation-button" onclick="donate(-7 * 24 * 60 * 60)">$420</button></div>
+        <div class="donation-box"><p class="donation-text">Add 1 month</p><button class="donation-button" onclick="donate(-30 * 24 * 60 * 60)">$1337</button></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
