@@ -1,50 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Ensure compatibility with old browsers -->
+    <meta name="description" content="Doomsday Alarm Clock: MAGA Baby is King">
     <title>Doomsday Alarm Clock</title>
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roobert:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Add your custom stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Optional: You can add a CSS reset for consistency across browsers -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
+
 <body>
     <div id="game-container">
+        <!-- Header Text -->
         <div id="header-text">HAIL MAGA BABY</div>
-        <img id="background" src="background.jpg" alt="Doomsday Background"/>
 
+        <!-- Background Image -->
+        <img id="background" src="background.jpg" alt="Doomsday Background">
+
+        <!-- Clock Label -->
         <div id="clock-label">MAGA BABY IS KING FOR...</div>
 
+        <!-- Countdown Timer -->
         <div id="clock">
-            <div class="time-block"><span class="time-number" id="years">7</span><span class="time-text">Years</span></div>
-            <div class="time-block"><span class="time-number" id="days">300</span><span class="time-text">Days</span></div>
-            <div class="time-block"><span class="time-number" id="hours">5</span><span class="time-text">Hours</span></div>
-            <div class="time-block"><span class="time-number" id="minutes">40</span><span class="time-text">Minutes</span></div>
-            <div class="time-block"><span class="time-number" id="seconds">00</span><span class="time-text">Seconds</span></div>
+            <div class="time-block">
+                <span class="time-number" id="years">7</span>
+                <span class="time-text">Years</span>
+            </div>
+            <div class="time-block">
+                <span class="time-number" id="days">300</span>
+                <span class="time-text">Days</span>
+            </div>
+            <div class="time-block">
+                <span class="time-number" id="hours">5</span>
+                <span class="time-text">Hours</span>
+            </div>
+            <div class="time-block">
+                <span class="time-number" id="minutes">40</span>
+                <span class="time-text">Minutes</span>
+            </div>
+            <div class="time-block">
+                <span class="time-number" id="seconds">00</span>
+                <span class="time-text">Seconds</span>
+            </div>
         </div>
 
+        <!-- Chat Input -->
         <div id="chat-container">
-            <input type="text" id="user-input" placeholder="MESSAGE REMOVES <amount> <unit>" maxlength="250" />
-
+            <input type="text" id="user-input" placeholder="CHATTING REMOVES 5 MINUTES" maxlength="250">
         </div>
 
+        <!-- Chat History -->
         <div id="chat-history"></div>
     </div>
 
+    <!-- Donation Section -->
     <div class="donation-container">
-        <div class="donation-box"><p class="donation-text">Remove 1 hour</p><button class="donation-button" onclick="donate(1 * 60 * 60)">$1.99</button></div>
-        <div class="donation-box"><p class="donation-text">Remove 6 hours</p><button class="donation-button" onclick="donate(6 * 60 * 60)">$9.99</button></div>
-        <div class="donation-box"><p class="donation-text">Remove 1 day</p><button class="donation-button" onclick="donate(24 * 60 * 60)">$29.99</button></div>
-        <div class="donation-box"><p class="donation-text">Add 1 hour</p><button class="donation-button" onclick="donate(-1 * 60 * 60)">$1.99</button></div>
-        <div class="donation-box"><p class="donation-text">Add 1 day</p><button class="donation-button" onclick="donate(-24 * 60 * 60)">$69.69</button></div>
-        <div class="donation-box"><p class="donation-text">Add 7 days</p><button class="donation-button" onclick="donate(-7 * 24 * 60 * 60)">$420</button></div>
-        <div class="donation-box"><p class="donation-text">Add 1 month</p><button class="donation-button" onclick="donate(-30 * 24 * 60 * 60)">$1337</button></div>
+        <div class="donation-box">
+            <p class="donation-text">Remove 1 hour</p>
+            <button class="donation-button" onclick="donate(1 * 60 * 60)">$1.99</button>
+        </div>
+        <div class="donation-box">
+            <p class="donation-text">Remove 6 hours</p>
+            <button class="donation-button" onclick="donate(6 * 60 * 60)">$9.99</button>
+        </div>
+        <div class="donation-box">
+            <p class="donation-text">Remove 1 day</p>
+            <button class="donation-button" onclick="donate(24 * 60 * 60)">$29.99</button>
+        </div>
+        <div class="donation-box">
+            <p class="donation-text">Add 1 hour</p>
+            <button class="donation-button" onclick="donate(-1 * 60 * 60)">$1.99</button>
+        </div>
+        <div class="donation-box">
+            <p class="donation-text">Add 1 day</p>
+            <button class="donation-button" onclick="donate(-24 * 60 * 60)">$69.69</button>
+        </div>
+        <div class="donation-box">
+            <p class="donation-text">Add 7 days</p>
+            <button class="donation-button" onclick="donate(-7 * 24 * 60 * 60)">$420</button>
+        </div>
+        <div class="donation-box">
+            <p class="donation-text">Add 1 month</p>
+            <button class="donation-button" onclick="donate(-30 * 24 * 60 * 60)">$1337</button>
+        </div>
     </div>
 
+    <!-- YouTube Video Container -->
+    <div id="video-container">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?si=O862tAz5AzxhAPXx&amp;list=PLlTLHnxSVuIzy4LphPd0PGZeArbH4jHG5"
+            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <!-- External JavaScript -->
     <script src="script.js"></script>
-
-<div id="video-container">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=O862tAz5AzxhAPXx&amp;list=PLlTLHnxSVuIzy4LphPd0PGZeArbH4jHG5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-
 </body>
+
 </html>
