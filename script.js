@@ -1,6 +1,13 @@
 const chatHistory = document.getElementById('chat-history');
 const userInput = document.getElementById('user-input');
 
+// Store elements for clock updates
+const yearsElem = document.getElementById('years');
+const daysElem = document.getElementById('days');
+const hoursElem = document.getElementById('hours');
+const minutesElem = document.getElementById('minutes');
+const secondsElem = document.getElementById('seconds');
+
 let totalSeconds = (7 * 365 + 300) * 24 * 60 * 60 + 5 * 60 * 60 + 40 * 60; // Initial countdown time in seconds
 
 // List of possible usernames
@@ -28,11 +35,11 @@ function updateClockDisplay(seconds) {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
 
-    document.getElementById('years').textContent = years;
-    document.getElementById('days').textContent = days;
-    document.getElementById('hours').textContent = hours;
-    document.getElementById('minutes').textContent = minutes;
-    document.getElementById('seconds').textContent = secs.toString().padStart(2, '0');
+    yearsElem.textContent = years;
+    daysElem.textContent = days;
+    hoursElem.textContent = hours;
+    minutesElem.textContent = minutes;
+    secondsElem.textContent = secs.toString().padStart(2, '0');
 }
 
 function tick() {
@@ -42,11 +49,12 @@ function tick() {
     }
 }
 
-setInterval(tick, 1000); // Update clock every second
+// Start the clock with an interval of 1 second
+setInterval(tick, 1000);
 
+// Add message and update clock time
 function addMessage(username, messageContent) {
     const messageDiv = document.createElement('div');
-
     const messageCount = chatHistory.childElementCount;
     const messageClass = messageCount % 2 === 0 ? 'chat-message-1' : 'chat-message-2';
 
@@ -64,21 +72,17 @@ function addMessage(username, messageContent) {
 // Generate and set username when the page loads
 const username = getRandomUsername();
 
-// Store the username for later
-userInput.setAttribute('data-username', username);
-
 // Set the placeholder initially to "CHATTING REMOVES 5 MINUTES"
 userInput.placeholder = "CHATTING REMOVES 5 MINUTES"; 
 
 // When user interacts with the input box, show the username after the blinking cursor
 userInput.addEventListener('focus', function() {
-    const storedUsername = userInput.getAttribute('data-username');
-    userInput.value = `${storedUsername}: `; // Add the username before the message
+    userInput.value = `${username}: `; // Add the username before the message
     userInput.selectionStart = userInput.selectionEnd = userInput.value.length; // Move cursor to end
 });
 
+// Reset placeholder when focus is lost
 userInput.addEventListener('blur', function() {
-    // Reset the placeholder when the user stops interacting with the input box
     if (!userInput.value) {
         userInput.placeholder = "CHATTING REMOVES 5 MINUTES";
     }
@@ -88,7 +92,6 @@ userInput.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
         const message = userInput.value.trim();
         if (message) {
-            const username = userInput.getAttribute('data-username');
             addMessage(username, message);
             userInput.value = ''; // Clear input after message is sent
             userInput.placeholder = "CHATTING REMOVES 5 MINUTES"; // Reset placeholder
@@ -96,5 +99,5 @@ userInput.addEventListener('keypress', function(event) {
     }
 });
 
-// Initial render
+// Initial render of the clock
 updateClockDisplay(totalSeconds);
