@@ -1,353 +1,144 @@
-/* Add the Roobert font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roobert:wght@400;700&display=swap');
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* Body and general styles */
 body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+  background-color: #000;
 }
 
-#game-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2px 5%; /* Reduced height by decreasing padding */
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#header-text {
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    font-weight: bold;
-    color: white;
-    text-align: left;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-    z-index: 1;
-    padding: 3px 10px;
-    border-radius: 10px;
+.logo {
+  font-size: 1.0em;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-#clock-label {
-    position: absolute;
-    top: 2%;
-    left: 4%;
-    font-size: 32px;
-    font-weight: bold;
-    color: white;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-    z-index: 1;
-}
-
-#background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-}
-
-#clock {
-    position: absolute;
-    top: 8%;
-    left: 2%;
-    font-size: 24px;
-    font-weight: bold;
-    color: red;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    gap: 25px;
-    padding: 0 10px;
+/* Timer */
+.countdown-timer {
+  display: flex;
+  gap: 40px; /* spacing between each number+unit block */
+  align-items: flex-end;
 }
 
 .time-block {
-    text-align: center;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  min-width: 75px; /* force stable width per block */
+  justify-content: flex-end;
 }
 
-.time-number {
-    font-size: 60px;
-    color: red;
-    font-weight: bold;
+.time-block .number {
+  font-size: 3em;
+  font-weight: 400;
+  color: red;
+  line-height: 1;
+  width: 60px; /* Adjust width for stable space allocation */
+  text-align: right; /* Align the number to the right */
 }
 
-.time-text {
-    font-size: 18px;
-    color: white;
-    display: block;
+.time-block .unit {
+  font-size: 1.3em;
+  color: white;
+  padding-bottom: 4px; /* align with bottom of number */
+  margin-left: 0px; /* Adjust for better spacing */
+  line-height: 1;
 }
 
-/* Chat input */
-#chat-container {
-    position: absolute;
-    top: 60%;
-    left: 2%;
-    width: 100%;
-    max-width: 500px;
-    z-index: 1;
+/* Image */
+.image-wrapper {
+  width: 100%;
 }
 
-#user-input {
-    width: 100%;
-    height: 26px;
-    padding: 2px 8px;
-    font-size: 14px;
-    line-height: 18px;
-    font-family: 'Roobert', sans-serif;
-    background-color: rgba(51, 51, 51, 0.5);
-    color: white;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    text-align: left;
-    box-sizing: border-box;
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: center center;
 }
 
-#user-input::placeholder {
-    font-family: 'Roobert', sans-serif;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
-    text-align: center;
+/* Bottom Section */
+.spacer {
+  width: 100%;
+  height: 720px;
 }
 
-/* Chat history */
-#chat-history {
-    position: absolute;
-    top: 65%;
-    left: 2%;
-    width: 100%;
-    max-width: 500px;
-    max-height: 290px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    z-index: 1;
-    padding-right: 8px;
-    box-sizing: border-box;
-    display: flex;
+.dark-blue {
+  background-color: #001f4d;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #333;
+  color: white;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 5%;
+  }
+
+  .logo {
+    font-size: 1.5em;
+  }
+
+  .countdown-timer {
     flex-direction: column;
-    scroll-behavior: smooth;
-    font-family: 'Roobert', sans-serif;
-    font-size: 12px;
-}
+    align-items: flex-start;
+    gap: 20px;
+    padding-left: 5%;
+    margin-top: 20px;
+  }
 
-#chat-history::-webkit-scrollbar {
-    width: 8px;
-}
+  .time-block {
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
 
-#chat-history::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 4px;
-}
+  .time-block .number {
+    font-size: 2em;
+    width: auto;
+    text-align: right;
+  }
 
-.chat-message-1,
-.chat-message-2 {
-    margin-bottom: 2px;
-    padding: 2px 6px;
-    border-radius: 4px;
-    color: white;
-    font-size: 12px;
-    line-height: 14px;
-    word-wrap: break-word;
-    white-space: normal;
-}
+  .time-block .unit {
+    font-size: 1em;
+    padding-bottom: 0;
+  }
 
-.chat-message-1 {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.chat-message-2 {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Donation */
-.donation-container {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: space-between;
-    width: 70%; /* Reduced width to 70% for 20% smaller size */
-    max-width: 960px; /* Max width adjusted accordingly */
-    gap: 15px;
-}
-
-.donation-box {
-    text-align: center;
-    flex: 1 1 100px;
-    max-width: 100px; /* Reduced max-width to make donation boxes smaller */
-    height: 90%;
-}
-
-.donation-text {
-    font-size: 12px; /* Reduced font size for smaller text */
-    margin-bottom: 5px;
-    color: white;
-    font-weight: normal;
-}
-
-.donation-button {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #ffcc00;
-    border: none;
-    padding: 6px 20px; /* Reduced padding to make buttons smaller */
-    font-size: 12px; /* Reduced font size */
-    cursor: pointer;
-    border-radius: 10px;
-    width: 80%;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.donation-button:hover {
-    background-color: #ffaa00;
-}
-
-/* Video container */
-#video-container {
-    position: absolute;
-    bottom: 15%;
-    right: 2%;
-    width: 396px;
-    height: 223px;
-    background: white;
-    padding: 2px;
-    border: 1px solid black;
-    border-radius: 6px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
-    z-index: 2;
-}
-
-#video-container iframe {
+  .image-wrapper {
+    overflow: hidden;
     width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 6px;
-}
+    margin-top: 60px;
+  }
 
-/* Mobile and small screen responsiveness */
-@media screen and (max-width: 768px) {
-    /* Ensure background is centered on mobile */
-    #background {
-        object-fit: contain;
-        object-position: center;
-    }
-
-    #header-text {
-        font-size: 12px;
-    }
-
-    #clock-label {
-        font-size: 24px;
-    }
-
-    #clock {
-        position: absolute;
-        top: 8%;
-        left: 2%;
-        font-size: 20px;
-        display: flex;
-        flex-direction: column; /* Clock stacked vertically */
-        justify-content: space-between;
-        gap: 15px;
-        padding: 0 10px;
-    }
-
-    .time-number {
-        font-size: 50px;
-    }
-
-    .time-text {
-        font-size: 16px;
-    }
-
-    #chat-container {
-        top: 40%;
-        width: 90%;
-        left: 5%;
-        max-width: none;
-    }
-
-    #user-input {
-        font-size: 12px;
-        padding: 5px 10px;
-    }
-
-    #chat-history {
-        top: 45%;
-        width: 90%;
-        left: 5%;
-        max-width: none;
-    }
-
-    /* Donation boxes in 2 rows: 3 on the first row, 4 on the second */
-    .donation-container {
-        width: 95%;
-        flex-direction: column; /* Stack donation boxes vertically */
-        align-items: center;
-    }
-
-    .donation-box {
-        max-width: 100%;
-        margin-bottom: 10px;
-    }
-
-    /* Style for 3 items in the first row */
-    .donation-container > .donation-box:nth-child(-n+3) {
-        width: 32%;
-    }
-
-    /* Style for 4 items in the second row */
-    .donation-container > .donation-box:nth-child(n+4) {
-        width: 23%;
-    }
-
-    #video-container {
-        width: 100%;
-        bottom: 10%;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    #clock-label {
-        font-size: 18px;
-    }
-
-    #clock {
-        top: 4%;
-        left: 5%;
-        font-size: 16px;
-    }
-
-    .time-number {
-        font-size: 40px;
-    }
-
-    .time-text {
-        font-size: 14px;
-    }
-
-    #chat-container {
-        top: 35%;
-    }
-
-    #user-input {
-        font-size: 10px;
-    }
-
-    #chat-history {
-        top: 40%;
-    }
-
-    /* Update the donation box sizes for very small screens */
-    .donation-container > .donation-box:nth-child(-n+3) {
-        width: 30%;
-    }
-
-    .donation-container > .donation-box:nth-child(n+4) {
-        width: 22%;
-    }
+  .image-wrapper img {
+    width: 160%;
+    margin-left: -30%;
+    height: auto;
+    object-fit: cover;
+  }
 }
