@@ -1,229 +1,135 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+function autoFormatDate(input) {
+  let value = input.value.replace(/\D/g, '').slice(0, 8);
 
-body, html {
-  height: 100%;
-  font-family: 'Montserrat', sans-serif;
-  background-color: #000;
-  overflow-x: hidden;
-}
-
-.image-wrapper img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-}
-
-.navbar2 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 24px;
-  height: 100%;
-  background: rgba(45, 45, 45, 0.2);
-  z-index: 10;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.vertical-text {
-  position: absolute;
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%) rotate(180deg);
-  writing-mode: vertical-rl;
-  color: #f5f5f5;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-  font-size: 0.6em;
-  letter-spacing: 4px;
-  line-height: 1.5;
-  margin-top: 0;
-  white-space: nowrap;
-  z-index: 1000;
-}
-
-.navbar3 {
-  position: fixed;
-  top: 0;
-  letter-spacing: 1px;
-  width: 100%;
-  height: 24px;
-  background: rgba(45, 45, 45, 0);
-  display: flex;
-  align-items: center;
-  z-index: 10;
-}
-
-.navbar3-text {
-  color: #333;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-  font-size: 0.8em;
-  position: absolute;
-  right: 135px;
-}
-
-.navbar4 {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 24px;
-  background: rgba(0, 0, 0, 0);
-  color: #f5f5f5;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-  padding: 5px 60px;
-  font-size: 0.8em;
-  letter-spacing: 4px;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.container {
-  position: fixed;
-  top: 40px;
-  right: 80px;
-  background: rgba(255, 255, 255, 0);
-  padding: 10px;
-  max-width: 360px;
-  width: 90%;
-  color: #333;
-  font-size: 0.9em;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.input-group {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 12px;
-}
-
-.input-group label {
-  width: 140px;
-  color: #333;
-  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
-  text-align: left;
-}
-
-.input-group input {
-  width: 90%;
-  max-width: 125px;
-  font-size: 1.1em;
-  padding: 4px;
-  background: transparent;
-  color: #5c5c5c;
-  letter-spacing: 2px;
-  border: none;
-  outline: none;
-  margin-left: 50px;
-  text-align: center;
-  direction: ltr;
-  border-radius: 4px;
-  transition: box-shadow 0.25s ease, transform 0.2s ease;
-}
-
-.input-group input:focus {
-  outline: none;
-  box-shadow:
- 0 0 0 0.7px rgba(77, 77, 77, 0.6),    /* outer dark grey outline */
-    0 0 0 1px rgba(255, 215, 0, 0);   /* inner yellow outline */
-  transform: translateY(-1px);
-}
-
-.input-group input::placeholder {
-  color: #4d4d4d;
-  font-size: 0.7em;
-  padding: 4px;
-  text-align: center;
-}
-
-.container button {
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  padding: 10px 14px;
-  background-color: rgba(265, 214, 0, 1);
-  color: rgba(34, 34, 34, 1);
-  letter-spacing: 4px;
-  font-weight: 500;
-  font-size: 1em;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-}
-
-.container button:hover {
-  background-color: rgba(265, 214, 0, 1);
-  color: rgba(34, 34, 34, 1);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-}
-
-.container button:active {
-  background-color: rgba(45, 45, 45, 1);
-  color: rgba(263, 211, 0, 1);
-  transform: scale(0.96);
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.35), 0 0 20px rgba(255, 255, 255, 0.15);
-  transition: transform 0.1s ease, box-shadow 0.2s ease;
-}
-
-.container button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
-}
-
-.result {
-  margin-top: 20px;
-  color: #f5f5f5;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-  font-size: 1.0em;
-  text-align: left;
-  width: 100%;
-  align-self: flex-start;
-}
-
-.result p {
-  margin: 5px 0;
-  line-height: 1.4;
-}
-
-.result .result-section {
-  margin-top: 10px;
-}
-
-@media (max-width: 600px) {
-  .container {
-    right: 10px;
-    top: 60px;
-    font-size: 1em;
-    padding: 8px;
+  if (value.length >= 2 && value.length < 4) {
+    input.value = value.slice(0, 2) + ' ' + value.slice(2);
+  } else if (value.length >= 4 && value.length < 6) {
+    input.value = value.slice(0, 2) + ' ' + value.slice(2, 4) + ' ' + value.slice(4);
+  } else if (value.length >= 6) {
+    input.value = value.slice(0, 2) + ' ' + value.slice(2, 4) + ' ' + value.slice(4, 8);
+  } else {
+    input.value = value;
   }
 
-  .container button {
-    margin-top: 10px;
+  if (value.length === 8) {
+    const dateParts = value.match(/(\d{2})(\d{2})(\d{4})/);
+    if (dateParts) {
+      input.dataset.originalValue = `${dateParts[3]}-${dateParts[2]}-${dateParts[1]}`;
+    }
+
+    const nextId = input.dataset.next;
+    if (nextId) {
+      const nextInput = document.getElementById(nextId);
+      if (nextInput) nextInput.focus();
+    }
+
+    // Always calculate, no exception
+    calculateAge();
+  }
+}
+
+function formatDate(input) {
+  const dateParts = input.value.match(/(\d{2})[ .\/-]?(\d{2})[ .\/-]?(\d{4})/);
+  if (dateParts) {
+    input.dataset.originalValue = `${dateParts[3]}-${dateParts[2]}-${dateParts[1]}`;
+  }
+}
+
+function handleBackspace(e, input) {
+  if (e.key !== "Backspace") return;
+
+  const cursorPos = input.selectionStart;
+  const value = input.value;
+  const units = value.split(" ");
+  const positions = [0, 3, 6]; // start positions for day, month, year
+
+  // Jump to previous input if current is completely empty
+  if (value.length === 0 && input.id !== "birthdate") {
+    const currentGroup = input.closest(".input-group");
+    const prevGroup = currentGroup?.previousElementSibling;
+    const prevInput = prevGroup?.querySelector("input");
+
+    if (prevInput) {
+      prevInput.focus();
+      prevInput.setSelectionRange(prevInput.value.length, prevInput.value.length);
+      e.preventDefault();
+    }
+    return;
   }
 
-  .vertical-text {
-    font-size: 0.8em;
+  let unitIndex = -1;
+  for (let i = 0; i < positions.length; i++) {
+    if (cursorPos > positions[i] && (i === positions.length - 1 || cursorPos <= positions[i + 1])) {
+      unitIndex = i;
+      break;
+    }
   }
 
-  .navbar3-text {
-    font-size: 0.9em;
+  if (unitIndex >= 0 && units[unitIndex]) {
+    const offset = positions[unitIndex];
+    if (cursorPos === offset || units[unitIndex].length === 0) {
+      if (unitIndex > 0) {
+        units[unitIndex - 1] = "";
+        input.value = units.map((u, i) => (i === 2 ? u : u.padEnd(2, " "))).join(" ").trim();
+        const pos = positions[unitIndex - 1];
+        input.setSelectionRange(pos, pos);
+        e.preventDefault();
+      } else if (input.id !== "birthdate") {
+        const currentGroup = input.closest(".input-group");
+        const prevGroup = currentGroup?.previousElementSibling;
+        const prevInput = prevGroup?.querySelector("input");
+
+        if (prevInput) {
+          prevInput.focus();
+          prevInput.setSelectionRange(prevInput.value.length, prevInput.value.length);
+          e.preventDefault();
+        }
+      }
+    } else {
+      units[unitIndex] = "";
+      input.value = units.map((u, i) => (i === 2 ? u : u.padEnd(2, " "))).join(" ").trim();
+      const pos = positions[unitIndex];
+      input.setSelectionRange(pos, pos);
+      e.preventDefault();
+    }
   }
+}
+
+function calculateAge() {
+  const birthdate = new Date(document.getElementById("birthdate").dataset.originalValue);
+  const viimane = new Date(document.getElementById("viimane").dataset.originalValue);
+  const tev = new Date(document.getElementById("tev").dataset.originalValue);
+  const esimene = new Date(document.getElementById("esimene").dataset.originalValue);
+
+  const resultDiv = document.getElementById("result");
+  resultDiv.innerHTML = "";
+
+  if (isNaN(birthdate)) {
+    resultDiv.textContent = "Palun sisestage sünniaeg.";
+    return;
+  }
+
+  if (viimane && !isNaN(viimane)) {
+    resultDiv.innerHTML += `<p>Viimane karistus: ${getDifference(birthdate, viimane)}</p>`;
+  }
+
+  if (tev && !isNaN(tev)) {
+    resultDiv.innerHTML += `<br><p>Tingimisi vabaks: ${getDifference(birthdate, tev)}</p>`;
+  }
+
+  if (esimene && !isNaN(esimene)) {
+    resultDiv.innerHTML += `<br><p>Esimene kokkupuude: ${getDifference(birthdate, esimene)}</p>`;
+  }
+}
+
+function getDifference(startDate, endDate) {
+  const diffTime = endDate - startDate;
+  if (diffTime < 0) return "kuupäev on enne sünniaega";
+
+  const diffDate = new Date(diffTime);
+  const years = diffDate.getUTCFullYear() - 1970;
+  const months = diffDate.getUTCMonth();
+  const days = diffDate.getUTCDate() - 1;
+
+  return `<br>${years} aasta, ${months} kuu, ${days} päeva vanuselt`;
 }
