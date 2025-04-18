@@ -164,7 +164,7 @@ body, html {
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Always-visible shadow */
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -179,13 +179,13 @@ body, html {
   background-color: rgba(45, 45, 45, 1);
   color: rgba(263, 211, 0, 1);
   transform: scale(0.96);
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.35), 0 0 20px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   transition: transform 0.1s ease, box-shadow 0.2s ease;
 }
 
 .container button:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .result {
